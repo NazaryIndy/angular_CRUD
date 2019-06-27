@@ -2,15 +2,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { HttpClientModule } from "@angular/common/http";
+
+import { fakeBackendProvider} from './interceptor';
+import { GoodsComponent } from './components/goods/goods.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GoodsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [fakeBackendProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
