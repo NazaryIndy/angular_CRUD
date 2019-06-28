@@ -1,52 +1,57 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+
 import { Good } from '../../models/good.interface';
-import { GoodService } from '../../good.service';
+import { GoodService } from '../../services/good.service';
 
 @Component({
   selector: 'app-goods',
   templateUrl: './goods.component.html',
   styleUrls: ['./goods.component.scss']
 })
-export class GoodsComponent implements OnInit {
+export class GoodsComponent {
 
-  public goods: Good[] = [];
+  @Input() private set goodInput(good: Good) {
+    this.good = good;
+    this.buildForm(good);
+  }
+  @Output() private selectedGood = new EventEmitter<Good>();
 
-  good = {
-    id: null,
-    name: 'sdasdasd',
-    price: 444
+  public form: FormGroup;
+  public good: Good;
+
+  constructor(private goodService: GoodService,
+              private fb: FormBuilder
+  ) { }
+
+  public buildForm(good: Good): void {
+    this.form = this.fb.group({
+      id: [good && good.id],
+      title: [good && good.title],
+      price: [good && good.price],
+      weight: [good && good.weight],
+    });
   }
 
-  constructor(private goodService: GoodService) { }
-
-  ngOnInit() {
+  public saveData(): void {
+    if (this.form.value.id) {
+      this.updateGood();
+    } else {
+      this.createGood();
+    }
   }
 
-  getGoods(): void {
-    this.goodService.getAll().subscribe(items => {
-      this.goods = items;
-      console.log(this.goods)
-    })
+  private updateGood(): void {
+    this.goodService.update(this.form.value, this.good.id).subscribe(item => {
+      this.good = item;
+      this.selectedGood.emit(item);
+    });
   }
 
-  addGood(): void {
-    this.goodService.create(this.good).subscribe(item => {
-      this.goods.push(item);
-    })
-  }
-
-  updateGood(): void {
-    this.goodService.update(this.good.id).subscribe(item => {
-      this.goods.push(item);
-    })
-  }
-
-  removeGood(): void {
-    this.goodService.delete(this.good.id).subscribe(item => {
-      this.goods.forEach((_, index) => {
-          this.goods.splice(index, 1);
-      });
-      console.log(this.goods) 
-    })
+  public createGood(): void {
+    this.goodService.create(this.form.value).subscribe(item => {
+      this.good = item;
+      this.selectedGood.emit(item);
+    });
   }
 }

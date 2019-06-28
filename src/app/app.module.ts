@@ -1,20 +1,29 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { fakeBackendProvider} from './interceptor';
-import { GoodsComponent } from './components/goods/goods.component';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+
+import { fakeBackendProvider} from './services/good.interceptor';
+import { GoodsComponent, GoodsListComponent, GoodsWrapperComponent } from './components';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GoodsComponent
+    GoodsComponent,
+    GoodsListComponent,
+    GoodsWrapperComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    CollapseModule.forRoot(),
   ],
   providers: [fakeBackendProvider],
   bootstrap: [AppComponent]
