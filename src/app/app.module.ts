@@ -5,17 +5,27 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { StoreModule } from '@ngrx/store';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 import { fakeBackendProvider} from './services/good.interceptor';
-import { GoodsComponent, GoodsListComponent, GoodsWrapperComponent } from './components';
+
+import {
+  GoodsComponent,
+  GoodsListComponent,
+  GoodsWrapperComponent,
+  GoodsSelectedComponent
+} from './components';
+
+import { reducers, metaReducers } from './store/reducers';
 
 @NgModule({
   declarations: [
     AppComponent,
     GoodsComponent,
     GoodsListComponent,
-    GoodsWrapperComponent
+    GoodsWrapperComponent,
+    GoodsSelectedComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +34,7 @@ import { GoodsComponent, GoodsListComponent, GoodsWrapperComponent } from './com
     ReactiveFormsModule,
     BrowserAnimationsModule,
     CollapseModule.forRoot(),
+    StoreModule.forRoot(reducers, { metaReducers }),
   ],
   providers: [fakeBackendProvider],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-<div class="goods" *ngIf="goods">
+<!-- <div class="goods" *ngIf="goods">
   <h2 class="title">List Of Goods</h2>
   <table class="table">
     <tr class="tr" *ngFor="let good of goods">
@@ -19,4 +19,10 @@
       </td>
     </tr>
   </table>
-</div>
+</div> -->
+
+<ul role="list">
+  <li *ngFor="let good of goods" (click)="select.emit(good.id)">
+    <app-goods [good]="good"></app-goods>
+  </li>
+</ul>

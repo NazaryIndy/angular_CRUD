@@ -3,4 +3,5 @@ export interface Good {
   title: string;
   price: string;
   weight: string;
+  img: string;
 }

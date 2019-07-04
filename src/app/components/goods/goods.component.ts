@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { Good } from '../../models/good.interface';
@@ -9,20 +9,26 @@ import { GoodService } from '../../services/good.service';
   templateUrl: './goods.component.html',
   styleUrls: ['./goods.component.scss']
 })
-export class GoodsComponent {
+export class GoodsComponent implements OnInit {
 
-  @Input() private set goodInput(good: Good) {
-    this.good = good;
-    this.buildForm(good);
-  }
+  @Input() good: Good;
+
+  // @Input() private set goodInput(good: Good) {
+  //   this.good = good;
+  //   this.buildForm(good);
+  // }
   @Output() private selectedGood = new EventEmitter<Good>();
 
   public form: FormGroup;
-  public good: Good;
+  // public good: Good;
 
   constructor(private goodService: GoodService,
               private fb: FormBuilder
   ) { }
+
+  ngOnInit() {
+    this.buildForm(this.good);
+  }
 
   public buildForm(good: Good): void {
     this.form = this.fb.group({

@@ -6,6 +6,26 @@
     <button type="button" class="button" (click)="addGood()">Add New Good</button>
   </div>
   <hr>
+
+<div class="container">
+  <app-goods-list [goods]="goods | async"
+                  [label]="'Список товаров'"
+                  (select)="onSelect($event)"
+                  (removedGood)="recieveRemovedGood($event)"
+                  (selectedGood)="recieveGood($event)"></app-goods-list>
+  <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
+    <app-goods-selected [good]="selected | async"></app-goods-selected>
+  </div>
+</div>
+
+<!-- <div class="main-container">
+  <div class="add-good-row">
+    <div>
+      Goods
+    </div>
+    <button type="button" class="button" (click)="addGood()">Add New Good</button>
+  </div>
+  <hr>
   <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
     <app-goods [goodInput]="selectedGood"
                (selectedGood)="recieveEditedGood($event)"></app-goods>
@@ -13,4 +33,6 @@
   <app-goods-list [goodsInput]="goods"
                   (removedGood)="recieveRemovedGood($event)"
                   (selectedGood)="recieveGood($event)"></app-goods-list>
-</div>
+</div> -->
+
+
