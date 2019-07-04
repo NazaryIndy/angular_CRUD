@@ -1,0 +1,16 @@
+<div class="main-container">
+  <div class="add-good-row">
+    <div>
+      Goods
+    </div>
+    <button type="button" class="button" (click)="addGood()">Add New Good</button>
+  </div>
+  <hr>
+  <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
+    <app-goods [goodInput]="selectedGood"
+               (selectedGood)="recieveEditedGood($event)"></app-goods>
+  </div>
+  <app-goods-list [goodsInput]="goods"
+                  (removedGood)="recieveRemovedGood($event)"
+                  (selectedGood)="recieveGood($event)"></app-goods-list>
+</div>

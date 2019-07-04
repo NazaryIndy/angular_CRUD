@@ -1,0 +1,22 @@
+<div class="goods" *ngIf="goods">
+  <h2 class="title">List Of Goods</h2>
+  <table class="table">
+    <tr class="tr" *ngFor="let good of goods">
+      <td class="td">
+        {{ good.title || 'Not specified' }}
+      </td>
+      <td class="td">
+        {{ good.price || 'Not specified' }}
+      </td>
+      <td class="td">
+        {{ good.weight || 'Not specified' }}
+      </td>
+      <td class="btn">
+        <button class="button" type="button" (click)="selectGood(good)">Edit</button>
+      </td>
+      <td class="btn">
+        <button class="button" type="button" (click)="deleteGood(good)">Remove</button>
+      </td>
+    </tr>
+  </table>
+</div>
