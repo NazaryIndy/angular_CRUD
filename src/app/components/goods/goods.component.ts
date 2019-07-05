@@ -27,6 +27,7 @@ export class GoodsComponent {
   public buildForm(good: Good): void {
     this.form = this.fb.group({
       id: [good && good.id],
+      article: [good && good.article],
       title: [good && good.title],
       price: [good && good.price],
       weight: [good && good.weight],
