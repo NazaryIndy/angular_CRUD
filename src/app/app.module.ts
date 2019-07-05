@@ -8,14 +8,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 import { fakeBackendProvider} from './services/good.interceptor';
-import { GoodsComponent, GoodsListComponent, GoodsWrapperComponent } from './components';
+import { GoodsComponent, GoodsListComponent, GoodsWrapperComponent, ActionComponent } from './components';
+
+import { generateReducer } from './generate.reducer';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
     AppComponent,
     GoodsComponent,
     GoodsListComponent,
-    GoodsWrapperComponent
+    GoodsWrapperComponent,
+    ActionComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +28,7 @@ import { GoodsComponent, GoodsListComponent, GoodsWrapperComponent } from './com
     ReactiveFormsModule,
     BrowserAnimationsModule,
     CollapseModule.forRoot(),
+    StoreModule.forRoot({ article: generateReducer })
   ],
   providers: [fakeBackendProvider],
   bootstrap: [AppComponent]

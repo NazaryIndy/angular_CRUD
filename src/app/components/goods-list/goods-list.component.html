@@ -3,6 +3,9 @@
   <table class="table">
     <tr class="tr" *ngFor="let good of goods">
       <td class="td">
+        {{ good.article || 'Not specified' }}
+      </td>
+      <td class="td">
         {{ good.title || 'Not specified' }}
       </td>
       <td class="td">
