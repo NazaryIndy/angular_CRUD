@@ -2,13 +2,18 @@ import { ActionReducerMap, createSelector, createFeatureSelector,
   ActionReducer, MetaReducer } from '@ngrx/store';
 import * as fromGoods from './goods';
 export interface State {
-  films: fromGoods.State;
+  goods: fromGoods.State;
 }
 export const reducers: ActionReducerMap<State> = {
-  films: fromGoods.reducer
+  goods: fromGoods.reducer,
 };
 
-export const getGoodState = createFeatureSelector<fromGoods.State>('films');
+export const getGoodState = createFeatureSelector<fromGoods.State>('goods');
+
+export const isAllLoaded = createSelector(
+  getGoodState,
+  fromGoods.isAllLoaded
+);
 
 export const getGoods = createSelector(
   getGoodState,

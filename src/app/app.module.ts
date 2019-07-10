@@ -8,9 +8,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 import { fakeBackendProvider} from './services/good.interceptor';
-import { GoodsComponent, GoodsListComponent, GoodsWrapperComponent, ActionComponent } from './components';
+import { GoodsComponent, GoodsListComponent, GoodsWrapperComponent } from './components';
 
-import { generateReducer } from './generate.reducer';
+// import { generateReducer } from './generate.reducer';
+import { reducers } from './store/reducers';
 import { StoreModule } from '@ngrx/store';
 
 @NgModule({
@@ -18,8 +19,7 @@ import { StoreModule } from '@ngrx/store';
     AppComponent,
     GoodsComponent,
     GoodsListComponent,
-    GoodsWrapperComponent,
-    ActionComponent
+    GoodsWrapperComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +28,7 @@ import { StoreModule } from '@ngrx/store';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     CollapseModule.forRoot(),
-    StoreModule.forRoot({ article: generateReducer })
+    StoreModule.forRoot(reducers)
   ],
   providers: [fakeBackendProvider],
   bootstrap: [AppComponent]
