@@ -1,9 +1,14 @@
-import { ActionReducerMap, createSelector, createFeatureSelector,
-  ActionReducer, MetaReducer } from '@ngrx/store';
+import {
+  ActionReducerMap,
+  createSelector,
+  createFeatureSelector,
+} from '@ngrx/store';
 import * as fromGoods from './goods';
+
 export interface State {
   goods: fromGoods.State;
 }
+
 export const reducers: ActionReducerMap<State> = {
   goods: fromGoods.reducer,
 };
@@ -24,7 +29,6 @@ export const getGoodsAsArray = createSelector(
   getGoodState,
   fromGoods.getGoodsArray
 );
-
 
 export const getGoodById = createSelector(
   getGoods,

@@ -10,7 +10,6 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { fakeBackendProvider} from './services/good.interceptor';
 import { GoodsComponent, GoodsListComponent, GoodsWrapperComponent } from './components';
 
-// import { generateReducer } from './generate.reducer';
 import { reducers } from './store/reducers';
 import { StoreModule } from '@ngrx/store';
 

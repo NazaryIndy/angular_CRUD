@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Good } from '../models/good.interface';
-import {Observable, of} from 'rxjs';
+import {Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../store/reducers';
 import * as goodActions from '../store/actions/goods';
-import {switchMap} from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 
 const URL = 'http://localhost:4200';
 
@@ -21,9 +21,8 @@ export class GoodService {
     return this.store.select(fromRoot.isAllLoaded).pipe(switchMap((isAllLoaded) => {
       if (isAllLoaded) {
         return this.store.select(fromRoot.getGoodsAsArray);
-      } else {
-        return this.http.get<Array<Good>>(`${URL}/goods`);
       }
+      return this.http.get<Array<Good>>(`${URL}/goods`);
     }));
   }
 
