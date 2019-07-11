@@ -53,5 +53,3 @@ export const reducer = createReducer(initialState,
 export const getGoods = (state: State) => state.goods;
 export const isAllLoaded = (state: State) => state.allLoaded;
 export const getGoodsArray = (state: State) => [...state.goods.values()];
-
-

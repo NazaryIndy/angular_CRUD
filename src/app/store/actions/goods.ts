@@ -1,4 +1,3 @@
-
 import { Good } from '../../models/good.interface';
 import { createAction } from '@ngrx/store';
 
