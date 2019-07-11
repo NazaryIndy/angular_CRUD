@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Good } from '../models/good.interface';
-import {Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../store/reducers';
 import * as goodActions from '../store/actions/goods';
